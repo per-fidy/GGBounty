@@ -1,0 +1,25 @@
+name: GGBounty
+version: 1.0.0
+main: com.ggbounty.GGBountyPlugin
+api-version: '1.21'
+authors: [GGBounty]
+commands:
+  rep:
+    description: View your reputation and rank.
+    usage: /rep
+  bounty:
+    description: Bounty commands.
+    usage: /bounty <list|accept|claim>
+  bountyboard:
+    description: Create or delete bounty hologram boards.
+    usage: /bountyboard <create|delete>
+  repadmin:
+    description: Admin reputation management.
+    usage: /repadmin <set|add> <player> <amount>
+permissions:
+  ggbounty.admin:
+    description: Admin access to reputation modification.
+    default: op
+  ggbounty.board.manage:
+    description: Manage bounty boards.
+    default: op

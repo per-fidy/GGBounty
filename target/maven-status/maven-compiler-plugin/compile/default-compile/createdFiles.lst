@@ -1,0 +1,16 @@
+com/ggbounty/managers/BountyManager.class
+com/ggbounty/managers/ReputationManager.class
+com/ggbounty/listeners/EntityDeathListener.class
+com/ggbounty/gui/BountyListGui.class
+com/ggbounty/GGBountyPlugin.class
+com/ggbounty/commands/ReputationCommand.class
+com/ggbounty/managers/RankManager.class
+com/ggbounty/commands/BountyBoardCommand.class
+com/ggbounty/listeners/EntityDamageListener.class
+com/ggbounty/managers/HologramManager.class
+com/ggbounty/listeners/PlayerHealListener.class
+com/ggbounty/commands/BountyCommand.class
+com/ggbounty/managers/HologramManager$BoardData.class
+com/ggbounty/listeners/BlockBreakListener.class
+com/ggbounty/listeners/GuiClickListener.class
+com/ggbounty/commands/RepAdminCommand.class
