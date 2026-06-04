@@ -4,6 +4,7 @@ import com.ggbounty.GGBountyPlugin;
 import com.ggbounty.managers.BountyManager;
 import com.ggbounty.managers.RankManager;
 import com.ggbounty.managers.ReputationManager;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -28,7 +29,7 @@ public final class BountyListGui {
         int page = 1;
         int totalPages = Math.max(1, (int) Math.ceil(entries.size() / (double) PAGE_SIZE));
 
-        Inventory inv = Bukkit.createInventory(null, 54, "§6Bounty Targets §8(Page 1 / " + totalPages + ")");
+        Inventory inv = Bukkit.createInventory(null, 54, Component.text("§6Bounty Targets §8(Page 1 / " + totalPages + ")"));
         fillPage(inv, page, entries, bountyManager, reputationManager, rankManager, plugin, totalPages);
         player.openInventory(inv);
     }
@@ -46,26 +47,26 @@ public final class BountyListGui {
             SkullMeta meta = (SkullMeta) skull.getItemMeta();
             OfflinePlayer offline = Bukkit.getOfflinePlayer(target);
             meta.setOwningPlayer(offline);
-            meta.setDisplayName("§e" + (offline.getName() == null ? target.toString() : offline.getName()));
-            List<String> lore = new ArrayList<>();
-            lore.add("§7Reputation: §f" + reputationManager.getReputation(target));
-            lore.add("§7Rank: §f" + rankManager.getRankName(reputationManager.getReputation(target)));
-            lore.add("§7Reward: §f" + bountyManager.getReward(target));
-            lore.add("§8Click to accept bounty contract.");
-            meta.setLore(lore);
+            meta.displayName(Component.text("§e" + (offline.getName() == null ? target.toString() : offline.getName())));
+            List<Component> lore = new ArrayList<>();
+            lore.add(Component.text("§7Reputation: §f" + reputationManager.getReputation(target)));
+            lore.add(Component.text("§7Rank: §f" + rankManager.getRankName(reputationManager.getReputation(target))));
+            lore.add(Component.text("§7Reward: §f" + bountyManager.getReward(target)));
+            lore.add(Component.text("§8Click to accept bounty contract."));
+            meta.lore(lore);
             skull.setItemMeta(meta);
             inv.addItem(skull);
         }
 
         ItemStack next = new ItemStack(Material.ARROW);
         ItemMeta nextMeta = next.getItemMeta();
-        nextMeta.setDisplayName("§aNext Page");
+        nextMeta.displayName(Component.text("§aNext Page"));
         next.setItemMeta(nextMeta);
         inv.setItem(53, next);
 
         ItemStack back = new ItemStack(Material.BARRIER);
         ItemMeta backMeta = back.getItemMeta();
-        backMeta.setDisplayName("§cClose");
+        backMeta.displayName(Component.text("§cClose"));
         back.setItemMeta(backMeta);
         inv.setItem(49, back);
     }

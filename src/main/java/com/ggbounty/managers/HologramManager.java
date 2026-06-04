@@ -1,6 +1,7 @@
 package com.ggbounty.managers;
 
 import com.ggbounty.GGBountyPlugin;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
@@ -69,7 +70,7 @@ public class HologramManager {
         if (board == null) return;
         Location base = board.location().clone();
         String header = board.type().equals("HIGH") ? "§6Top Reputation" : "§cLow Reputation";
-        board.lines().get(0).setCustomName(header);
+        board.lines().get(0).customName(Component.text(header));
 
         List<Map.Entry<UUID, Integer>> ranked = new ArrayList<>(reputationManager.getTopPlayers(5));
         if (board.type().equals("LOW")) {
@@ -84,7 +85,7 @@ public class HologramManager {
                 String name = Bukkit.getOfflinePlayer(uuid).getName() != null ? Bukkit.getOfflinePlayer(uuid).getName() : "Unknown";
                 line = "§e" + (i + 1) + ". §f" + name + " §8(" + rep + " / " + rankManager.getRankName(rep) + ")";
             }
-            board.lines().get(i + 1).setCustomName(line);
+            board.lines().get(i + 1).customName(Component.text(line));
             board.lines().get(i + 1).teleport(base.clone().add(0, 0.25 * (5 - i), 0));
         }
     }

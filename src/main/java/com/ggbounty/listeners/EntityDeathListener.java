@@ -3,6 +3,11 @@ package com.ggbounty.listeners;
 import com.ggbounty.GGBountyPlugin;
 import com.ggbounty.managers.BountyManager;
 import com.ggbounty.managers.ReputationManager;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
+import net.kyori.adventure.title.Title.Times;
+
+import java.time.Duration;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
 import org.bukkit.Sound;
@@ -35,7 +40,11 @@ public class EntityDeathListener implements Listener {
             reputationManager.addReputation(killer.getUniqueId(), delta);
             if (reputationManager.getReputation(victim.getUniqueId()) < plugin.getConfig().getInt("reputation.bounty-threshold", 100)) {
                 bountyManager.createBounty(victim.getUniqueId(), killer.getUniqueId());
-                killer.sendTitle("§6NEW BOUNTY", "§7Check /bounty", 10, 40, 10);
+                killer.showTitle(Title.title(
+                        Component.text("§6NEW BOUNTY"),
+                        Component.text("§7Check /bounty"),
+                        Times.times(Duration.ofMillis(500), Duration.ofSeconds(2), Duration.ofSeconds(1))
+                ));
                 String soundName = plugin.getConfig().getString("settings.bounty-alert-sound", "ENTITY_PLAYER_LEVELUP");
                 Sound sound = Registry.SOUNDS.get(NamespacedKey.fromString(soundName));
                 if (sound != null) {
