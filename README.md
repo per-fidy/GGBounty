@@ -1,5 +1,5 @@
 # GGBounty
-Paper 1.21.4 / Java 21 plugin project for GGBounty.
+Paper 26.1.2 / Java 21 plugin project for GGBounty.
 
 ## Build
 Run:
