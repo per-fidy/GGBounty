@@ -4,7 +4,6 @@ import com.ggbounty.commands.BountyCommand;
 import com.ggbounty.commands.RepAdminCommand;
 import com.ggbounty.commands.ReputationCommand;
 import com.ggbounty.commands.BountyBoardCommand;
-import com.ggbounty.listeners.BlockBreakListener;
 import com.ggbounty.listeners.EntityDeathListener;
 import com.ggbounty.listeners.EntityDamageListener;
 import com.ggbounty.listeners.GuiClickListener;
@@ -55,7 +54,6 @@ public final class GGBountyPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EntityDeathListener(this, reputationManager, bountyManager), this);
         getServer().getPluginManager().registerEvents(new EntityDamageListener(this, reputationManager), this);
         getServer().getPluginManager().registerEvents(new PlayerHealListener(this, reputationManager), this);
-        getServer().getPluginManager().registerEvents(new BlockBreakListener(this, reputationManager), this);
         getServer().getPluginManager().registerEvents(new GuiClickListener(this), this);
     }
 
